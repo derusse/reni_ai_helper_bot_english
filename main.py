@@ -4,7 +4,7 @@ import os
 
 TOKEN = os.environ.get("TOKEN")
 bot = telebot.TeleBot(TOKEN)
-server = Flask(__name__)
+app = Flask(__name__)  # ← исправлено, было server
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
@@ -26,14 +26,14 @@ def handle_buttons(message):
     else:
         bot.send_message(message.chat.id, "Please choose an option from the keyboard.")
 
-@server.route(f"/{TOKEN}", methods=["POST"])
+@app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     json_str = request.get_data().decode("UTF-8")
     update = telebot.types.Update.de_json(json_str)
     bot.process_new_updates([update])
     return "!", 200
 
-@server.route("/")
+@app.route("/")
 def index():
     return "RENI Telegram Bot is running"
 
