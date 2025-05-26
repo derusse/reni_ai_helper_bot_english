@@ -4,7 +4,7 @@ import os
 
 TOKEN = os.environ.get("TOKEN")
 bot = telebot.TeleBot(TOKEN)
-app = Flask(__name__)  # ← исправлено, было server
+app = Flask(__name__)  # Всё верно, Flask-приложение
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
@@ -36,5 +36,6 @@ def webhook():
 @app.route("/")
 def index():
     return "RENI Telegram Bot is running"
+
 
 
