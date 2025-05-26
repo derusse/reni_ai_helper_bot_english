@@ -2,9 +2,10 @@ from flask import Flask, request
 import telebot
 import os
 
-TOKEN = os.environ.get("TOKEN")
+# ✅ Готовый токен вставлен вручную
+TOKEN = "7543863102:AAFVRM2OZdp8zzmKGRrfKtE3txPiUI03aro"
 bot = telebot.TeleBot(TOKEN)
-app = Flask(__name__)  # Всё верно, Flask-приложение
+app = Flask(__name__)  # всё верно
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
@@ -36,6 +37,3 @@ def webhook():
 @app.route("/")
 def index():
     return "RENI Telegram Bot is running"
-
-
-
